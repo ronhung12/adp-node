@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADP Node Coding Challenge</title>
+    <script>
+        let refresh;
+
+        window.onload =()=> {
+            setInterval(()=>{
+                getData();
+            },1000)
+        };
+
+        function reloadIFrame() {
+                window.setInterval("reloadIFrame();", 5000);
+                let frameHolder = document.getElementById("result");
+                frameHolder.src = "http://localhost:3000/results"
+        }
+
+        function startTask() {
+            refresh = true;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:3000/start", true);
+            xhr.send();
+            reloadIFrame();
+        }
+
+        function endTask() {
+            refresh = false;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:3000/end", true);
+            xhr.send();
+        }
+
+        function getData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:3000/results", true);
+            xhr.send();
+        }
+
+    </script>
+</head>
+<body>
+    <iframe id="result" width="80%" height="50%" src="http://localhost:3000/results"></iframe>
+    <div>
+        <button onclick="startTask()">START</button>
+        <button onclick="endTask()">END</button>
+    </div>
+</body>
+</html>

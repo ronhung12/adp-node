@@ -1,0 +1,15 @@
+{
+  "name": "adp-node-server",
+  "version": "1.0.0",
+  "description": "ADP Node Coding Challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ronald Hung",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "nodemon": "^1.19.1"
+  }
+}
