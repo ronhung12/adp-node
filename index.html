@@ -3,36 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>ADP Node Coding Challenge</title>
+    <style>
+        button {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
     <script>
-        let refresh;
 
+        /**
+         * After entire page is loaded (DOM, CSSDOM, etc) continually send API call for updated calculations
+         * and continually refresh iframe that contains updated calculations
+         */
         window.onload =()=> {
             setInterval(()=>{
                 getData();
-            },1000)
-        };
-
-        function reloadIFrame() {
-                window.setInterval("reloadIFrame();", 5000);
                 let frameHolder = document.getElementById("result");
                 frameHolder.src = "http://localhost:3000/results"
-        }
+            },5000)
+        };
 
+
+        /**
+         * This function sends a GET request to an API endpoint that begins the server calculations
+         */
         function startTask() {
-            refresh = true;
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "http://localhost:3000/start", true);
             xhr.send();
-            reloadIFrame();
         }
 
+        /**
+         * This function sends a GET request to an API endpoint that stops the server calculations
+         */
         function endTask() {
-            refresh = false;
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "http://localhost:3000/end", true);
             xhr.send();
         }
 
+
+        /**
+         * This function sends a GET request to an API endpoint that communicates to server to POST results to API endpoint
+         */
         function getData() {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "http://localhost:3000/results", true);
@@ -42,10 +55,10 @@
     </script>
 </head>
 <body>
-    <iframe id="result" width="80%" height="50%" src="http://localhost:3000/results"></iframe>
-    <div>
+    <iframe id="result" width="100%"></iframe>
+    <section>
         <button onclick="startTask()">START</button>
         <button onclick="endTask()">END</button>
-    </div>
+    </section>
 </body>
 </html>
