@@ -1,6 +1,12 @@
 {
   "name": "adp-node-server",
   "version": "1.0.0",
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
   "description": "ADP Node Coding Challenge",
   "main": "server.js",
   "scripts": {
